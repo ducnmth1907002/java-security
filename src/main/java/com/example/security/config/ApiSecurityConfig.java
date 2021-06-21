@@ -39,7 +39,9 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(authenticationFilter(), AnonymousAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/seed/generate").permitAll()
-                .antMatchers("/api/register").permitAll();
+                .antMatchers("/api/product").permitAll()
+                .antMatchers("/register").permitAll()
+                .antMatchers("/login").permitAll();
     }
 
     @Bean

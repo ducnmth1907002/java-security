@@ -35,29 +35,18 @@ public class AccountService {
     }
 
     // login API có token
-//    public Credential login(String username, String password) {
-//        Optional<Account> accountOptional = accountRepository.findAccountByUsername(username);
-//        if (accountOptional.isPresent()) {
-//            Account account = accountOptional.get();
-//            if (passwordEncoder.matches(password, account.getPasswordHash())) {
-//                Credential credential = Credential.CredentialBuilder.aCredential()
-//                        .withTokenKey(StringUtil.generateAccessToken())
-//                        .withCreatedAt(DataTimeUtil.getCurrentTimeInMLS())
-//                        .withExpiredAt(DataTimeUtil.getTimeAfterDay(10))
-//                        .withAccount(account)
-//                        .build();
-//                return credentialRepository.save(credential);
-//            }
-//        }
-//        return null;
-//    }
-
-    public Account login (String username, String password) {
+    public Credential login(String username, String password) {
         Optional<Account> accountOptional = accountRepository.findAccountByUsername(username);
         if (accountOptional.isPresent()) {
             Account account = accountOptional.get();
             if (passwordEncoder.matches(password, account.getPasswordHash())) {
-                return account;
+                Credential credential = Credential.CredentialBuilder.aCredential()
+                        .withTokenKey(StringUtil.generateAccessToken())
+                        .withCreatedAt(DataTimeUtil.getCurrentTimeInMLS())
+                        .withExpiredAt(DataTimeUtil.getTimeAfterDay(10))
+                        .withAccount(account)
+                        .build();
+                return credentialRepository.save(credential);
             }
         }
         return null;
