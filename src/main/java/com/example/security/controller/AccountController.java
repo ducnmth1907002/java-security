@@ -13,11 +13,6 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public Account register(@RequestBody Account account) {
-        return accountService.register(account);
-    }
-
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Credential login(@RequestBody String username, String password) {
         return accountService.login(username, password);

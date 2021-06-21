@@ -21,18 +21,6 @@ public class AccountService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    //register API
-    public Account register(Account requestAccount) {
-        Account account = Account.AccountBuilder.anAccount()
-                .withUsername(requestAccount.getUsername())
-                .withPasswordHash(passwordEncoder.encode(requestAccount.getPasswordHash()))
-                .withRole(requestAccount.getRole())
-                .withFullName(requestAccount.getFullName())
-                .withStatus(requestAccount.getStatus())
-                .build();
-        accountRepository.save(account);
-        return null;
-    }
 
     // login API có token
     public Credential login(String username, String password) {
